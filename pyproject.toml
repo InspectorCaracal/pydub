@@ -1,0 +1,35 @@
+[project]
+name = "pydub"
+version = "0.25.1a"
+authors = [
+    {"name" = "James Robert", "email" = 'jiaaro@gmail.com'}
+]
+description='Manipulate audio with an simple and easy high level interface'
+license='MIT'
+keywords=['audio', 'sound', 'high-level']
+classifiers=[
+    'Development Status :: 5 - Production/Stable',
+    'Programming Language :: Python',
+    'Intended Audience :: Developers',
+    'Operating System :: OS Independent',
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Topic :: Multimedia :: Sound/Audio :: Conversion",
+    "Topic :: Multimedia :: Sound/Audio :: Editors",
+    "Topic :: Multimedia :: Sound/Audio :: Mixers",
+    "Topic :: Software Development :: Libraries",
+    'Topic :: Utilities',
+]
+requires-python = ">=3.8"
+dependencies = [
+    "audioop-lts; python_version >= '3.13'"
+]
+
+[project.urls]
+Homepage = "http://pydub.com"
+Original = "https://github.com/jiaaro/pydub"
+
+[project.optional-dependencies]
+playback = [
+    "simpleaudio",
+]
