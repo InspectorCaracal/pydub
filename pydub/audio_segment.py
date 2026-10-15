@@ -642,19 +642,25 @@ class AudioSegment(object):
 
 
     @classmethod
-    def from_file(cls, file, format=None, codec=None, parameters=None, start_second=None, duration=None, **kwargs):
+    def from_file(cls, file, format=None, codec=None, parameters=None, start_second=None, duration=None, as_url=False, **kwargs):
         orig_file = file
         try:
             filename = fsdecode(file)
         except TypeError:
             filename = None
-        file, close_file = _fd_or_path_or_tempfile(file, 'rb', tempfile=False)
+        if not as_url:
+            file, close_file = _fd_or_path_or_tempfile(file, 'rb', tempfile=False)
+        else:
+            close_file = False
 
         if format:
             format = format.lower()
             format = AUDIO_FILE_EXT_ALIASES.get(format, format)
 
         def is_format(f):
+            # this check is for file-handling, so we return early if it's a url
+            if as_url:
+                return False
             f = f.lower()
             if format == f:
                 return True
